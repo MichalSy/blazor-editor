@@ -1,0 +1,32 @@
+﻿@using Microsoft.Extensions.Logging
+@using System.Numerics
+@using System.Globalization
+
+<div class="editor-container">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" 
+            @onmousemove="@(e => MouseMoveExecute(e))" 
+            @onmouseup="@(e => MouseUpItemExecute(e))"
+            @onmousewheel="@(e => MouseWheelExecute(e))"
+            @onmousedown="@(e => MouseDownExecute(e))"
+    >
+
+        <g transform="matrix(@Zoom.ToString(CultureInfo.InvariantCulture),0,0,@Zoom.ToString(CultureInfo.InvariantCulture),@ViewportPosition.X,@ViewportPosition.Y)" >
+
+            <circle cx="@LocalMousePointer.X" cy="@LocalMousePointer.Y" r="10" fill="red" />
+
+            
+            @foreach (var item in Items)
+            {
+                <svg x="@item.X" y="@item.Y" width="@item.Width" height="@item.Height" @onmousedown="@(e => MouseDownItemExecute(e, item))" >
+                    <rect width="100%" height="100%" fill="@item.BackgroundColor" />
+                    @DragItemTemplate(item)
+                </svg>
+            }
+
+            
+        </g>
+
+        <DragItemSelector Editor="@this" SelectedItem="@SelectedItem" />
+
+    </svg>
+</div>

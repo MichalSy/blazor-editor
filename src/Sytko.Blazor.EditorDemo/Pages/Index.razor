@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<div>
+    <EditorView Items="@_items" @bind-SelectedItem=SelectedItem>
+        <DragItemTemplate>
+            <image href="@context.ImageUrl" width="100%" height="100%" />
+
+        </DragItemTemplate>
+    </EditorView>
+
+    @if (SelectedItem != null)
+    {
+        <span>BLUBB</span>
+    }
+</div>
+
+
+<button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>
+
+@if (SelectedItem != null)
+{
+    <span> </span>
+    <button class="btn btn-danger" @onclick= "RemoveSelectedItem">Remove Selected Object</button>
+}
