@@ -48,7 +48,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script_stop: true
         script: |
-          rm -r /opt/docker/project/blazor_test/http/*
+          rm -rf /opt/docker/project/blazor_test/http/*
 
     - name: Transfer app...
       uses: garygrossgarten/github-action-scp@release
