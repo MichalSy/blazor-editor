@@ -55,7 +55,7 @@ jobs:
       with:
         local: "${{ github.workspace }}/blazor_editor.zip"
         remote: "/opt/docker/project/blazor_test/http/blazor_editor.zip"
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         privateKey : ${{ secrets.SSH_KEY }}
 
