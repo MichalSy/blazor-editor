@@ -9,7 +9,6 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Sytko.Blazor.Editor.Common;
-using Sytko.Blazor.Editor.Managers;
 
 namespace Sytko.Blazor.Editor
 {
@@ -17,9 +16,6 @@ namespace Sytko.Blazor.Editor
     {
         [Inject]
         public ILogger<EditorView> _logger { get; set; }
-
-        [Inject]
-        public IEditorManager _editorManager { get; set; }
 
         [Parameter]
         public List<DragItem> Items { get; set; } = new();
