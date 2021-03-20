@@ -36,7 +36,7 @@ jobs:
 
     - name: Create Zip
       run: |
-        cd ${{ github.workspace }}/App
+        cd ${{ github.workspace }}/App/wwwroot
         zip -r "${{ github.workspace }}/blazor_editor.zip" .
 
     - name: Cleanup remote directory
