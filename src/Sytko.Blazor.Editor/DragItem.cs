@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +18,8 @@ namespace Sytko.Blazor.Editor
 
         public int Width { get; set; }
         public int Height { get; set; }
+
+        public int Rotation { get; set; }
 
         public string ImageUrl { get; set; }
 

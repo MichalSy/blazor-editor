@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -35,7 +36,8 @@ namespace Sytko.Blazor.Editor.Components
                 return;
             }
 
-            _positionAndSize = Editor.ConvertRectangleFromMatrixToWorld(new Rectangle(_selectedItem.X - 1, _selectedItem.Y - 1, _selectedItem.Width + 2, _selectedItem.Height + 2));
+            var newRect = Editor.ConvertRectangleFromMatrixToWorld(new Rectangle(_selectedItem.X, _selectedItem.Y, _selectedItem.Width, _selectedItem.Height));
+            _positionAndSize = new Rectangle(newRect.X - 1, newRect.Y - 1, newRect.Width + 2, newRect.Height + 2);
         }
 
     }
