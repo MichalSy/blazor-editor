@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sytko.Blazor.Editor;
 using Sytko.Blazor.Editor.Common;
+using Sytko.Blazor.EditorDemo.Models;
 
 namespace Sytko.Blazor.EditorDemo.Pages
 {
@@ -37,7 +38,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
 
         protected override void OnInitialized()
         {
-            _items.Add(new DragItem
+            _items.Add(new ArticleDragItem
             {
                 X = 41,
                 Y = 147,
@@ -47,7 +48,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 BackgroundColor = "#00ffff00"
             });
 
-            _items.Add(new DragItem
+            _items.Add(new ArticleDragItem
             {
                 X = -13,
                 Y = -260,
@@ -85,7 +86,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
         protected void AddObjectExecute()
         {
             _logger.LogInformation("BLUBB");
-            _items.Add(new DragItem
+            _items.Add(new ArticleDragItem
             {
                 X = -200,
                 Y = 200,

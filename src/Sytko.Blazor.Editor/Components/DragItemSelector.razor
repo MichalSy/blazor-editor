@@ -1,6 +1,6 @@
 ﻿@if (SelectedItem != null)
 {
-    <g transform="translate(@(_positionAndSize.X) @(_positionAndSize.Y)) rotate(@SelectedItem.Rotation @(_positionAndSize.Width/2) @(_positionAndSize.Height/2))">
+    <g id="Selector" transform="translate(@(_positionAndSize.X) @(_positionAndSize.Y)) rotate(@SelectedItem.Rotation @(_positionAndSize.Width/2) @(_positionAndSize.Height/2))">
         <svg x="0" y="0" width="@_positionAndSize.Width" height="@_positionAndSize.Height">
             <rect width="100%" height="100%" stroke="#333" stroke-width="2.0" fill="none" stroke-dasharray="5">
                 <animate attributeName="stroke-dashoffset" from="0" to="100" begin="0s" dur="10s" repeatCount="indefinite" />
