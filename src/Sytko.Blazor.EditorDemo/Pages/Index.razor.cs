@@ -39,22 +39,22 @@ namespace Sytko.Blazor.EditorDemo.Pages
         {
             _items.Add(new DragItem
             {
-                X = 0,
-                Y = 0,
-                Width = 200,
-                Height = 200,
-                ImageUrl = "https://images.ctfassets.net/wmdwnw6l5vg5/71jz89dFBIdA9KHrLh8T0h/c4c0a817afe77c35ff5a1461f052b03f/economy.png",
-                BackgroundColor = "#ffff00"
+                X = 41,
+                Y = 147,
+                Width = 221,
+                Height = 240,
+                ImageUrl = "/assets/tt/1016511_21905_7.webp",
+                BackgroundColor = "#00ffff00"
             });
 
             _items.Add(new DragItem
             {
-                X = -200,
-                Y = -200,
-                Width = 100,
-                Height = 100,
-                ImageUrl = "https://images.ctfassets.net/wmdwnw6l5vg5/71jz89dFBIdA9KHrLh8T0h/c4c0a817afe77c35ff5a1461f052b03f/economy.png",
-                BackgroundColor = "#81a0ff"
+                X = -13,
+                Y = -260,
+                Width = 330,
+                Height = 432,
+                ImageUrl = "/assets/tt/1025433_16396_7.webp",
+                BackgroundColor = "#00000000"
             });
         }
 
