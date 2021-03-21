@@ -12,12 +12,12 @@
 
         <g transform="matrix(@Zoom.ToString(CultureInfo.InvariantCulture),0,0,@Zoom.ToString(CultureInfo.InvariantCulture),@ViewportPosition.X,@ViewportPosition.Y)" >
 
-            <circle cx="@LocalMousePointer.X" cy="@LocalMousePointer.Y" r="10" fill="red" />
+            @*<circle cx="@LocalMousePointer.X" cy="@LocalMousePointer.Y" r="10" fill="red" />*@
 
             
             @foreach (var item in Items)
             {
-                <g transform="translate(@(item.X) @(item.Y)) rotate(@item.Rotation @(item.Width/2) @(item.Height/2))">
+                <g class="drag-item" transform="translate(@(item.X) @(item.Y)) rotate(@item.Rotation @(item.Width/2) @(item.Height/2))">
                     <svg x="0" y="0" width="@item.Width" height="@item.Height" @onmousedown="@(e => MouseDownItemExecute(e, item))" >
                         <rect width="100%" height="100%" fill="@item.BackgroundColor" />
                         @DragItemTemplate(item)

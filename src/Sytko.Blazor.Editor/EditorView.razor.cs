@@ -75,7 +75,6 @@ namespace Sytko.Blazor.Editor
             var localMouse = ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
             LocalMousePointer = localMouse;
 
-
             if (_currentAction == EditorActionTypes.DragItem || _currentAction == EditorActionTypes.MoveItem)
             {
                 if (SelectedItem == null)

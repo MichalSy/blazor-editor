@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-<div class="top-row px-4">
+<div class="top-row px-4 shadow-1">
     <button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>
     <span class="ml-md-auto"> </span>
 </div>
@@ -16,17 +16,34 @@
 
         @if (SelectedItem != null)
         {
-            <div class="editor-detail-view" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
-                <span> </span>
-                <button class="btn btn-warning" @onclick="RotateSelectedItem"><i class="fas fa-sync-alt"></i></button>
-                <span> </span>
-                <button class="btn btn-warning" @onclick="ScaleAddSelectedItem"><i class="fas fa-expand-alt"></i></button>
-                <span> </span>
-                <button class="btn btn-danger" @onclick="RemoveSelectedItem"><i class="fas fa-trash-alt"></i></button>
+            <div class="editor-detail-view shadow-1" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
+                @if (_selectedArticleDragItem != null)
+                {
+                    @if (_selectedArticleDragItem.AvailableArticles.Any())
+                    {
+                        <div class="article-information">
+
+                            <div class="sub-header">Variants:</div>
+                            @foreach (var article in _selectedArticleDragItem.AvailableArticles)
+                            {
+                                <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
+                            }
+
+                        </div>
+                    }
+                }
+                <div>
+
+                    <button class="btn btn-warning" @onclick="RotateSelectedItem"><i class="fas fa-sync-alt"></i></button>
+                    <span> </span>
+                    <button class="btn btn-warning" @onclick="ScaleAddSelectedItem"><i class="fas fa-expand-alt"></i></button>
+                    <span> </span>
+                    <button class="btn btn-danger" @onclick="RemoveSelectedItem"><i class="fas fa-trash-alt"></i></button>
+                </div>
             </div>
         }
     </div>
 
 
-    
+
 </div>

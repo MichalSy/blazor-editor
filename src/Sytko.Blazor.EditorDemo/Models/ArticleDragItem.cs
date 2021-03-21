@@ -8,5 +8,6 @@ namespace Sytko.Blazor.EditorDemo.Models
 {
     public class ArticleDragItem : DragItem
     {
+        public IEnumerable<ArticleInformation> AvailableArticles { get; set; } = Array.Empty<ArticleInformation>();
     }
 }
