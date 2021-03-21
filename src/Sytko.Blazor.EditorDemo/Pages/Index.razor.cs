@@ -73,7 +73,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
             var halfHeight = worldPosition.Height / 2;
             var maxLength = (int)Math.Sqrt((halfWidth * halfWidth) + (halfHeight * halfHeight));
 
-            DetailPosition = new Vector2Int(worldPosition.X, worldPosition.Y + halfHeight + maxLength + 2);
+            DetailPosition = new Vector2Int(worldPosition.X + halfWidth + maxLength + 2, worldPosition.Y + halfHeight);
         }
 
         private void OnCurrentActionChanged(EditorActionTypes newAction)
