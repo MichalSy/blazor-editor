@@ -1,12 +1,12 @@
 ﻿@page "/"
 
 <div class="top-row px-4 shadow-1">
-    <button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>
+    @*<button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>*@
     <span class="ml-md-auto"> </span>
 </div>
 
 <div class="content">
-    <div class="editor-outer">
+    <div class="editor-outer" ondragover="event.preventDefault();" @ondrop="HandleDrop">
         <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
             <DragItemTemplate>
                 <image href="@context.ImageUrl" width="100%" height="100%" />
@@ -14,9 +14,25 @@
             </DragItemTemplate>
         </EditorView>
 
+        <div class="article-catalog">
+            <div class="row g-0">
+                @foreach (var item in _catalogItems)
+                {
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="@item.ImageUrl" draggable="true"
+                                 @ondragstart="() => DragImage = item" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
         @if (SelectedItem != null)
         {
-            <div class="editor-detail-view shadow-1" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
+            <div class="editor-detail-view shadow-1 noselect" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
                 @if (_selectedArticleDragItem != null)
                 {
                     @if (_selectedArticleDragItem.AvailableArticles.Any())

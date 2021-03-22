@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ namespace Sytko.Blazor.EditorDemo.Pages
 
         private List<DragItem> _items = new();
 
+        private List<CatalogItem> _catalogItems = new();
+        public CatalogItem DragImage { get; set; }
+
         private DragItem _selectedItem;
         public DragItem SelectedItem
         {
@@ -33,13 +37,26 @@ namespace Sytko.Blazor.EditorDemo.Pages
         }
 
         private ArticleDragItem _selectedArticleDragItem;
-        
+
 
         public Vector2Int DetailPosition { get; set; }
-        
+
 
         protected override void OnInitialized()
         {
+            _catalogItems.Add(new CatalogItem
+            {
+                ImageUrl = "/assets/tt/1016511_21905_7.webp"
+            });
+            _catalogItems.Add(new CatalogItem
+            {
+                ImageUrl = "/assets/tt/1026338_10302_7.webp"
+            });
+            _catalogItems.Add(new CatalogItem
+            {
+                ImageUrl = "/assets/tt/1025433_16396_7.webp"
+            });
+
             _items.Add(new ArticleDragItem
             {
                 X = -150,
@@ -100,7 +117,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 ImageUrl = "/assets/tt/1025433_16396_7.webp",
                 BackgroundColor = "#00000000",
                 AvailableArticles = new ArticleInformation[]
-    {
+                {
                     new ArticleInformation
                     {
                         ColorHexCode = "#879bb9",
@@ -116,7 +133,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                         ColorHexCode = "#626575",
                         ImageUrl = "/assets/tt/1023906_13804_7.webp"
                     }
-    }
+                }
             });
         }
 
@@ -128,7 +145,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 return;
             }
 
-            
+
             var worldPosition = EditorView.ConvertRectangleFromMatrixToWorld(new Rectangle(_selectedItem.X, _selectedItem.Y, _selectedItem.Width, _selectedItem.Height));
 
             var halfWidth = worldPosition.Width / 2;
@@ -142,20 +159,6 @@ namespace Sytko.Blazor.EditorDemo.Pages
         {
             //_logger.LogError(newAction.ToString());
             CalculateDetailPosition();
-        }
-
-        protected void AddObjectExecute()
-        {
-            _logger.LogInformation("BLUBB");
-            _items.Add(new ArticleDragItem
-            {
-                X = -200,
-                Y = 200,
-                Width = 200,
-                Height = 300,
-                ImageUrl = "https://images.ctfassets.net/wmdwnw6l5vg5/71jz89dFBIdA9KHrLh8T0h/c4c0a817afe77c35ff5a1461f052b03f/economy.png",
-                BackgroundColor = "#81a0ff"
-            });
         }
 
         private void RemoveSelectedItem()
@@ -178,6 +181,22 @@ namespace Sytko.Blazor.EditorDemo.Pages
         private void SwitchArticleForSelectedItem(ArticleInformation article)
         {
             SelectedItem.ImageUrl = article.ImageUrl;
+        }
+
+        private void HandleDrop(DragEventArgs e)
+        {
+            _logger.LogInformation($"{DragImage.ImageUrl}");
+            var matrixPos = EditorView.ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
+            _items.Add(new ArticleDragItem
+            {
+                X = (int)matrixPos.X - 83,
+                Y = (int)matrixPos.Y - 108,
+                Width = 165,
+                Height = 216,
+                ImageUrl = DragImage.ImageUrl,
+                BackgroundColor = "#00000000",
+            });
+            SelectedItem = _items.LastOrDefault();
         }
     }
 }
