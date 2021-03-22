@@ -136,6 +136,8 @@ namespace Sytko.Blazor.Editor
 
         private async void MouseWheelExecute(WheelEventArgs e)
         {
+            var localMouseBefore = ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
+
             if (e.DeltaY > 0)
             {
                 Zoom -= 0.1f;
@@ -145,6 +147,11 @@ namespace Sytko.Blazor.Editor
                 Zoom += 0.1f;
             }
             Zoom = Math.Max(Zoom, 0.2f);
+
+            var localMouseAfter = ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
+            var offset = new Vector2Int(localMouseAfter.X - localMouseBefore.X, localMouseAfter.Y - localMouseBefore.Y);
+            ViewportPosition = new Vector2Int(ViewportPosition.X + offset.X, ViewportPosition.Y + offset.Y);
+
             await CurrentActionChanged.InvokeAsync(_currentAction);
         }
 
