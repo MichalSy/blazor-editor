@@ -6,7 +6,7 @@ using Sytko.Blazor.Editor;
 
 namespace Sytko.Blazor.EditorDemo.Models
 {
-    public class ArticleDragItem : DragItem
+    public class ArticleDragItem
     {
         public IEnumerable<ArticleInformation> AvailableArticles { get; set; } = Array.Empty<ArticleInformation>();
     }

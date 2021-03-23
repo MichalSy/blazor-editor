@@ -7,15 +7,9 @@
 
 <div class="content">
     <div class="editor-outer" ondragover="event.preventDefault();" @ondrop="HandleDrop">
-        <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
-            <DragItemTemplate>
-                <image href="@context.ImageUrl" width="100%" height="100%" />
 
-            </DragItemTemplate>
-        </EditorView>
-
-        <div class="article-catalog">
-            <div class="row g-0">
+        <div class="article-catalog shadow-2 p-2">
+            <div class="row g-1">
                 @foreach (var item in _catalogItems)
                 {
                     <div class="col">
@@ -30,24 +24,35 @@
             </div>
         </div>
 
+
+        <div class="right-side">
+            <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
+                <DragItemTemplate>
+                    <image href="@context.ImageUrl" width="100%" height="100%" />
+
+                </DragItemTemplate>
+            </EditorView>
+        </div>
+
+        
+
         @if (SelectedItem != null)
         {
             <div class="editor-detail-view shadow-1 noselect" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
-                @if (_selectedArticleDragItem != null)
+
+                @if (_selectedItem?.DataModel?.AvailableArticles?.Any() ?? false)
                 {
-                    @if (_selectedArticleDragItem.AvailableArticles.Any())
-                    {
-                        <div class="article-information">
+                    <div class="article-information">
 
-                            <div class="sub-header">Variants:</div>
-                            @foreach (var article in _selectedArticleDragItem.AvailableArticles)
-                            {
-                                <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
-                            }
+                        <div class="sub-header">Variants:</div>
+                        @foreach (var article in _selectedItem.DataModel.AvailableArticles)
+                        {
+                            <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
+                        }
 
-                        </div>
-                    }
+                    </div>
                 }
+
                 <div>
 
                     <button class="btn btn-warning" @onclick="RotateSelectedItem"><i class="fas fa-sync-alt"></i></button>

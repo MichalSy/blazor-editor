@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using Sytko.Blazor.Editor;
 using Sytko.Blazor.Editor.Common;
+using Sytko.Blazor.Editor.Models;
 using Sytko.Blazor.EditorDemo.Models;
 
 namespace Sytko.Blazor.EditorDemo.Pages
@@ -24,20 +24,16 @@ namespace Sytko.Blazor.EditorDemo.Pages
         private List<CatalogItem> _catalogItems = new();
         public CatalogItem DragImage { get; set; }
 
-        private DragItem _selectedItem;
+        private DragItemWithModel<ArticleDragItem> _selectedItem;
         public DragItem SelectedItem
         {
             get => _selectedItem;
             set
             {
-                _selectedItem = value;
-                _selectedArticleDragItem = value as ArticleDragItem;
+                _selectedItem = value as DragItemWithModel<ArticleDragItem>;
                 CalculateDetailPosition();
             }
         }
-
-        private ArticleDragItem _selectedArticleDragItem;
-
 
         public Vector2Int DetailPosition { get; set; }
 
@@ -57,7 +53,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 ImageUrl = "/assets/tt/1025433_16396_7.webp"
             });
 
-            _items.Add(new ArticleDragItem
+            _items.Add(new DragItemWithModel<ArticleDragItem>
             {
                 X = -150,
                 Y = 141,
@@ -65,22 +61,25 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 120,
                 ImageUrl = "/assets/tt/1016511_21905_7.webp",
                 BackgroundColor = "#00ffff00",
-                AvailableArticles = new ArticleInformation[]
+                DataModel = new ArticleDragItem
                 {
-                    new ArticleInformation
+                    AvailableArticles = new ArticleInformation[]
                     {
-                        ColorHexCode = "#40444a",
-                        ImageUrl = "/assets/tt/1016511_21905_7.webp"
-                    },
-                    new ArticleInformation
-                    {
-                        ColorHexCode = "#ce601c",
-                        ImageUrl = "/assets/tt/1016979_21202_7.webp"
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#40444a",
+                            ImageUrl = "/assets/tt/1016511_21905_7.webp"
+                        },
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#ce601c",
+                            ImageUrl = "/assets/tt/1016979_21202_7.webp"
+                        }
                     }
                 }
             });
 
-            _items.Add(new ArticleDragItem
+            _items.Add(new DragItemWithModel<ArticleDragItem>
             {
                 X = 84,
                 Y = 104,
@@ -88,27 +87,30 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 291,
                 ImageUrl = "/assets/tt/1026338_10302_7.webp",
                 BackgroundColor = "#00000000",
-                AvailableArticles = new ArticleInformation[]
+                DataModel = new ArticleDragItem
                 {
-                    new ArticleInformation
+                    AvailableArticles = new ArticleInformation[]
                     {
-                        ColorHexCode = "#6a6461",
-                        ImageUrl = "/assets/tt/1026345_10952_7.webp"
-                    },
-                    new ArticleInformation
-                    {
-                        ColorHexCode = "#091624",
-                        ImageUrl = "/assets/tt/1026338_10302_7.webp"
-                    },
-                    new ArticleInformation
-                    {
-                        ColorHexCode = "#bfad9f",
-                        ImageUrl = "/assets/tt/1024601_24371_7.webp"
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#6a6461",
+                            ImageUrl = "/assets/tt/1026345_10952_7.webp"
+                        },
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#091624",
+                            ImageUrl = "/assets/tt/1026338_10302_7.webp"
+                        },
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#bfad9f",
+                            ImageUrl = "/assets/tt/1024601_24371_7.webp"
+                        }
                     }
                 }
             });
 
-            _items.Add(new ArticleDragItem
+            _items.Add(new DragItemWithModel<ArticleDragItem>
             {
                 X = 94,
                 Y = -95,
@@ -116,22 +118,25 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 216,
                 ImageUrl = "/assets/tt/1025433_16396_7.webp",
                 BackgroundColor = "#00000000",
-                AvailableArticles = new ArticleInformation[]
+                DataModel = new ArticleDragItem
                 {
-                    new ArticleInformation
+                    AvailableArticles = new ArticleInformation[]
                     {
-                        ColorHexCode = "#879bb9",
-                        ImageUrl = "/assets/tt/1025433_16396_7.webp"
-                    },
-                    new ArticleInformation
-                    {
-                        ColorHexCode = "#404354",
-                        ImageUrl = "/assets/tt/1027028_19024_7.webp"
-                    },
-                    new ArticleInformation
-                    {
-                        ColorHexCode = "#626575",
-                        ImageUrl = "/assets/tt/1023906_13804_7.webp"
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#879bb9",
+                            ImageUrl = "/assets/tt/1025433_16396_7.webp"
+                        },
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#404354",
+                            ImageUrl = "/assets/tt/1027028_19024_7.webp"
+                        },
+                        new ArticleInformation
+                        {
+                            ColorHexCode = "#626575",
+                            ImageUrl = "/assets/tt/1023906_13804_7.webp"
+                        }
                     }
                 }
             });
@@ -187,7 +192,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
         {
             _logger.LogInformation($"{DragImage.ImageUrl}");
             var matrixPos = EditorView.ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
-            _items.Add(new ArticleDragItem
+            var newModel = new DragItemWithModel<ArticleDragItem>
             {
                 X = (int)matrixPos.X - 83,
                 Y = (int)matrixPos.Y - 108,
@@ -195,8 +200,9 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 216,
                 ImageUrl = DragImage.ImageUrl,
                 BackgroundColor = "#00000000",
-            });
-            SelectedItem = _items.LastOrDefault();
+            };
+            _items.Add(newModel);
+            SelectedItem = newModel;
         }
     }
 }

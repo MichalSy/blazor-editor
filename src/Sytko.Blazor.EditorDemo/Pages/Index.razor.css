@@ -1,6 +1,10 @@
 ﻿.editor-outer {
     position: relative;
+    width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
 }
 
 .editor-detail-view {
@@ -47,17 +51,19 @@
     margin: 2px;
 }
 
+.right-side {
+    flex: 1;
+}
+
 .article-catalog {
-    position: absolute;
-    left: 0;
-    top: 0;
+    margin-right: 3px;
     width: 300px;
-    bottom: 0;
+    background-color: #fff;
 }
 
     .article-catalog .card {
-        width: 150px;
-        height: 250px;
+        width: 140px;
+        height: 200px;
     }
 
     .article-catalog img {
@@ -71,4 +77,5 @@
         left: 0;
         right: 0;
         margin: auto;
+        padding: 1rem;
     }
