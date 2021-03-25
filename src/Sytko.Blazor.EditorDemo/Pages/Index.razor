@@ -1,7 +1,6 @@
 ﻿@page "/"
 
 <div class="top-row px-4 shadow-2">
-    @*<button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>*@
     <span class="ml-md-auto">Outfit Designer</span>
 </div>
 
@@ -9,9 +8,6 @@
     <div class="editor-outer" ondragover="event.preventDefault();" @ondrop="HandleDrop">
 
         <ArticleCatalog CatalogItems="@_catalogItems" OnDragStart="(item) => DragImage = item" />
-
-
-
 
         <div class="right-side">
             <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
@@ -21,8 +17,6 @@
                 </DragItemTemplate>
             </EditorView>
         </div>
-
-        
 
         @if (SelectedItem != null)
         {
