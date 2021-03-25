@@ -101,8 +101,8 @@ namespace Sytko.Blazor.EditorDemo.Pages
             {
                 X = (int)matrixPos.X - 83,
                 Y = (int)matrixPos.Y - 108,
-                Width = 165,
-                Height = 216,
+                Width = 265,
+                Height = 316,
                 ImageUrl = DragImage.ImageUrl,
                 BackgroundColor = "#00000000",
                 DataModel = DragImage

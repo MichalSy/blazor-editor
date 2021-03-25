@@ -49,6 +49,34 @@ namespace Sytko.Blazor.EditorDemo.Data
                         }
                     }
                 }
+            },
+            new ArticleInformation
+            {
+                AvailableVariants = new ArticleInformation[]
+                {
+                    new ArticleInformation
+                    {
+                        ImageUrl = "tt/w_shirt_2/1026223_27229_7.png",
+                        ColorHexCode = "#000",
+                        FilterOptions = new FilterItem[]
+                        {
+                            FilterItems.GenderFemale,
+                            FilterItems.ColorBlack,
+                            FilterItems.CategoryTshirt
+                        }
+                    },
+                    new ArticleInformation
+                    {
+                        ImageUrl = "tt/w_shirt_2/1026223_27231_7.png",
+                        ColorHexCode = "#e2bbb4",
+                        FilterOptions = new FilterItem[]
+                        {
+                            FilterItems.GenderFemale,
+                            FilterItems.ColorPink,
+                            FilterItems.CategoryTshirt
+                        }
+                    }
+                }
             }
         };
     }
