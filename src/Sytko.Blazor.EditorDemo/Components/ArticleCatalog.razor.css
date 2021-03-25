@@ -28,3 +28,35 @@
         margin: auto;
         padding: 1rem;
     }
+
+.toolbar {
+    background-color: #444;
+    margin-right: -2px;
+    display: flex;
+    flex-direction: row;
+}
+
+    .toolbar button {
+        background-color: #444;
+        line-height: 34px;
+        color: #fff;
+        padding: 2px 12px;
+        border: 0;
+        background: #4e4e4e;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+        .toolbar button:hover
+        {
+            background: #444;
+        }
+
+        .toolbar button:nth-child(2) i {
+            margin-right: 8px;
+        }
+
+        .toolbar button:nth-child(2) {
+            flex: 1;
+            border-left: solid 1px #777777;
+        }

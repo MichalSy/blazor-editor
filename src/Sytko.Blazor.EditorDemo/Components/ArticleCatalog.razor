@@ -1,5 +1,9 @@
-﻿<div class="article-catalog shadow-2 p-2">
-    <div class="row g-2">
+﻿<div class="article-catalog">
+    <div class="toolbar">
+        <button><i class="fas fa-home"></i></button>
+        <button><i class="fas fa-sliders-h"></i>Edit filters...</button>
+    </div>
+    <div class="row g-2 p-2">
         @foreach (var item in CatalogItems)
         {
             <div class="col">

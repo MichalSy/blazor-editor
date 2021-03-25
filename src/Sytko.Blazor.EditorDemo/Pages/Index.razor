@@ -9,7 +9,7 @@
 
         <ArticleCatalog CatalogItems="@_catalogItems" OnDragStart="(item) => DragImage = item" />
 
-        <div class="right-side">
+        <div class="right-side shadow-2">
             <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
                 <DragItemTemplate>
                     <image href="@(ImageBasePath + context.ImageUrl)" width="100%" height="100%" />
