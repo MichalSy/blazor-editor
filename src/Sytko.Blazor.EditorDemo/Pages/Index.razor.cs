@@ -99,10 +99,10 @@ namespace Sytko.Blazor.EditorDemo.Pages
             var matrixPos = EditorView.ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
             var newModel = new DragItemWithModel<ArticleInformation>
             {
-                X = (int)matrixPos.X - 83,
-                Y = (int)matrixPos.Y - 108,
-                Width = 265,
-                Height = 316,
+                X = (int)matrixPos.X - (DragImage.Size.Width / 2),
+                Y = (int)matrixPos.Y - (DragImage.Size.Height / 2),
+                Width = DragImage.Size.Width,
+                Height = DragImage.Size.Height,
                 ImageUrl = DragImage.ImageUrl,
                 BackgroundColor = "#00000000",
                 DataModel = DragImage
