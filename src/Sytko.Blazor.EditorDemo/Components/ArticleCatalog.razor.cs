@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sytko.Blazor.EditorDemo.Data;
 using Sytko.Blazor.EditorDemo.Data.Models;
 
 namespace Sytko.Blazor.EditorDemo.Components
@@ -20,5 +21,22 @@ namespace Sytko.Blazor.EditorDemo.Components
         public IConfiguration Configuration { get; set; }
 
         public string ImageBasePath => Configuration["DefaultImageBasePath"];
+
+        protected override void OnInitialized()
+        {
+            var catalogItems = new List<ArticleInformation>();
+
+            foreach (var currentArticle in Articles.AllArticles)
+            {
+                foreach (var currentVariant in currentArticle.AvailableVariants)
+                {
+                    currentVariant.AvailableVariants = currentArticle.AvailableVariants;
+                    catalogItems.Add(currentVariant);
+                }
+            }
+
+            CatalogItems = catalogItems;
+
+        }
     }
 }

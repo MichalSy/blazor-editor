@@ -7,7 +7,7 @@
 <div class="content">
     <div class="editor-outer" ondragover="event.preventDefault();" @ondrop="HandleDrop">
 
-        <ArticleCatalog CatalogItems="@_catalogItems" OnDragStart="(item) => DragImage = item" />
+        <ArticleCatalog OnDragStart="(item) => DragImage = item" />
 
         <div class="right-side shadow-2">
             <EditorView @ref="EditorView" Items="@_items" @bind-SelectedItem="SelectedItem" CurrentActionChanged="OnCurrentActionChanged">
@@ -16,35 +16,37 @@
 
                 </DragItemTemplate>
             </EditorView>
+
+            @if (SelectedItem != null)
+            {
+                <div class="editor-detail-view shadow-1 noselect" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
+
+                    @if (_selectedItem?.DataModel?.AvailableVariants?.Any() ?? false)
+                    {
+                        <div class="article-information">
+
+                            <div class="sub-header">Variants:</div>
+                            @foreach (var article in _selectedItem.DataModel.AvailableVariants)
+                            {
+                                <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
+                            }
+
+                        </div>
+                    }
+
+                    <div>
+
+                        <button class="btn btn-warning" @onclick="RotateSelectedItem"><i class="fas fa-sync-alt"></i></button>
+                        <span> </span>
+                        <button class="btn btn-warning" @onclick="ScaleAddSelectedItem"><i class="fas fa-expand-alt"></i></button>
+                        <span> </span>
+                        <button class="btn btn-danger" @onclick="RemoveSelectedItem"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+            }
         </div>
 
-        @if (SelectedItem != null)
-        {
-            <div class="editor-detail-view shadow-1 noselect" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
 
-                @if (_selectedItem?.DataModel?.AvailableVariants?.Any() ?? false)
-                {
-                    <div class="article-information">
-
-                        <div class="sub-header">Variants:</div>
-                        @foreach (var article in _selectedItem.DataModel.AvailableVariants)
-                        {
-                            <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
-                        }
-
-                    </div>
-                }
-
-                <div>
-
-                    <button class="btn btn-warning" @onclick="RotateSelectedItem"><i class="fas fa-sync-alt"></i></button>
-                    <span> </span>
-                    <button class="btn btn-warning" @onclick="ScaleAddSelectedItem"><i class="fas fa-expand-alt"></i></button>
-                    <span> </span>
-                    <button class="btn btn-danger" @onclick="RemoveSelectedItem"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </div>
-        }
     </div>
 
 

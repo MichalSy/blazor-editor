@@ -26,6 +26,20 @@ namespace Sytko.Blazor.EditorDemo.Data
         #endregion
 
         #region Color
+        public static FilterItem ColorBlack => new()
+        {
+            Key = "black",
+            Title = "Black",
+            IconInfo = "#000"
+        };
+
+        public static FilterItem ColorWhite => new()
+        {
+            Key = "white",
+            Title = "White",
+            IconInfo = "#FFF"
+        };
+
         public static FilterItem ColorBlue => new()
         {
             Key = "blue",
@@ -55,6 +69,13 @@ namespace Sytko.Blazor.EditorDemo.Data
             Key = "red",
             Title = "Red",
             IconInfo = "#f76363"
+        };
+
+        public static FilterItem ColorPink => new()
+        {
+            Key = "pink",
+            Title = "Pink",
+            IconInfo = "#e6a5e8"
         };
         #endregion
 

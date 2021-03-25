@@ -11,6 +11,22 @@ namespace Sytko.Blazor.EditorDemo.Data.Models
         public string ColorHexCode { get; set; }
         public string ImageUrl { get; set; }
 
+        private ArticleInformation _currentVariant;
+        public ArticleInformation CurrentVariant
+        {
+            get
+            {
+                if (_currentVariant == null)
+                {
+                    _currentVariant = AvailableVariants.FirstOrDefault();
+                }
+                return _currentVariant;
+            }
+            set => _currentVariant = value;
+        }
+
+        public IEnumerable<FilterItem> FilterOptions { get; set; } = Array.Empty<FilterItem>();
+
         public IEnumerable<ArticleInformation> AvailableVariants { get; set; } = Array.Empty<ArticleInformation>();
     }
 }

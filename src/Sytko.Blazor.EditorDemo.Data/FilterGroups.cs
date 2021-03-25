@@ -31,11 +31,14 @@ namespace Sytko.Blazor.EditorDemo.Data
             GroupName = "color",
             FilterItems = new FilterItem[]
             {
+                FilterItems.ColorBlack,
+                FilterItems.ColorWhite,
                 FilterItems.ColorBlue,
                 FilterItems.ColorGreen,
                 FilterItems.ColorYellow,
                 FilterItems.ColorOrange,
-                FilterItems.ColorRed
+                FilterItems.ColorRed,
+                FilterItems.ColorPink
             }
         };
 
