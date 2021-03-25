@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,11 @@ namespace Sytko.Blazor.EditorDemo.Pages
     {
         [Inject]
         public ILogger<Index> _logger { get; set; }
+
+        [Inject]
+        public IConfiguration Configuration { get; set; }
+
+        public string ImageBasePath => Configuration["DefaultImageBasePath"];
 
         private EditorView EditorView;
 
@@ -42,15 +48,15 @@ namespace Sytko.Blazor.EditorDemo.Pages
         {
             _catalogItems.Add(new ArticleInformation
             {
-                ImageUrl = "/assets/tt/1016511_21905_7.webp"
+                ImageUrl = "tt/1016511_21905_7.webp"
             });
             _catalogItems.Add(new ArticleInformation
             {
-                ImageUrl = "/assets/tt/1026338_10302_7.webp"
+                ImageUrl = "tt/1026338_10302_7.webp"
             });
             _catalogItems.Add(new ArticleInformation
             {
-                ImageUrl = "/assets/tt/1025433_16396_7.webp"
+                ImageUrl = "tt/1025433_16396_7.webp"
             });
 
             _items.Add(new DragItemWithModel<ArticleInformation>
@@ -59,7 +65,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Y = 141,
                 Width = 110,
                 Height = 120,
-                ImageUrl = "/assets/tt/1016511_21905_7.webp",
+                ImageUrl = "tt/1016511_21905_7.webp",
                 BackgroundColor = "#00ffff00",
                 DataModel = new ArticleInformation
                 {
@@ -68,12 +74,12 @@ namespace Sytko.Blazor.EditorDemo.Pages
                         new ArticleInformation
                         {
                             ColorHexCode = "#40444a",
-                            ImageUrl = "/assets/tt/1016511_21905_7.webp"
+                            ImageUrl = "tt/1016511_21905_7.webp"
                         },
                         new ArticleInformation
                         {
                             ColorHexCode = "#ce601c",
-                            ImageUrl = "/assets/tt/1016979_21202_7.webp"
+                            ImageUrl = "tt/1016979_21202_7.webp"
                         }
                     }
                 }
@@ -85,7 +91,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Y = 104,
                 Width = 188,
                 Height = 291,
-                ImageUrl = "/assets/tt/1026338_10302_7.webp",
+                ImageUrl = "tt/1026338_10302_7.webp",
                 BackgroundColor = "#00000000",
                 DataModel = new ArticleInformation
                 {
@@ -94,17 +100,17 @@ namespace Sytko.Blazor.EditorDemo.Pages
                         new ArticleInformation
                         {
                             ColorHexCode = "#6a6461",
-                            ImageUrl = "/assets/tt/1026345_10952_7.webp"
+                            ImageUrl = "tt/1026345_10952_7.webp"
                         },
                         new ArticleInformation
                         {
                             ColorHexCode = "#091624",
-                            ImageUrl = "/assets/tt/1026338_10302_7.webp"
+                            ImageUrl = "tt/1026338_10302_7.webp"
                         },
                         new ArticleInformation
                         {
                             ColorHexCode = "#bfad9f",
-                            ImageUrl = "/assets/tt/1024601_24371_7.webp"
+                            ImageUrl = "tt/1024601_24371_7.webp"
                         }
                     }
                 }
@@ -116,7 +122,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Y = -95,
                 Width = 165,
                 Height = 216,
-                ImageUrl = "/assets/tt/1025433_16396_7.webp",
+                ImageUrl = "tt/1025433_16396_7.webp",
                 BackgroundColor = "#00000000",
                 DataModel = new ArticleInformation
                 {
@@ -125,17 +131,17 @@ namespace Sytko.Blazor.EditorDemo.Pages
                         new ArticleInformation
                         {
                             ColorHexCode = "#879bb9",
-                            ImageUrl = "/assets/tt/1025433_16396_7.webp"
+                            ImageUrl = "tt/1025433_16396_7.webp"
                         },
                         new ArticleInformation
                         {
                             ColorHexCode = "#404354",
-                            ImageUrl = "/assets/tt/1027028_19024_7.webp"
+                            ImageUrl = "tt/1027028_19024_7.webp"
                         },
                         new ArticleInformation
                         {
                             ColorHexCode = "#626575",
-                            ImageUrl = "/assets/tt/1023906_13804_7.webp"
+                            ImageUrl = "tt/1023906_13804_7.webp"
                         }
                     }
                 }

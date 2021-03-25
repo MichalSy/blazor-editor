@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,10 @@ namespace Sytko.Blazor.EditorDemo.Components
 
         [Parameter]
         public EventCallback<ArticleInformation> OnDragStart { get; set; }
+
+        [Inject]
+        public IConfiguration Configuration { get; set; }
+
+        public string ImageBasePath => Configuration["DefaultImageBasePath"];
     }
 }
