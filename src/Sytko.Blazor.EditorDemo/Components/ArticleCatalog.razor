@@ -1,0 +1,15 @@
+﻿<div class="article-catalog shadow-2 p-2">
+    <div class="row g-2">
+        @foreach (var item in CatalogItems)
+        {
+            <div class="col">
+                <div class="card shadow-1">
+                    <div class="card-body">
+                        <img src="@item.ImageUrl" draggable="true"
+                         @ondragstart="() => OnDragStart.InvokeAsync(item)" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

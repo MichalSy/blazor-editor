@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sytko.Blazor.Editor", "Sytk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sytko.Blazor.EditorDemo", "Sytko.Blazor.EditorDemo\Sytko.Blazor.EditorDemo.csproj", "{A7A58D10-0BB8-4F2D-9DF6-449DFF1EE05B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sytko.Blazor.EditorDemo.Data", "Sytko.Blazor.EditorDemo.Data\Sytko.Blazor.EditorDemo.Data.csproj", "{BC6D8D73-7537-46FB-BBA6-C662C14258FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{A7A58D10-0BB8-4F2D-9DF6-449DFF1EE05B}.Release|x64.Build.0 = Release|Any CPU
 		{A7A58D10-0BB8-4F2D-9DF6-449DFF1EE05B}.Release|x86.ActiveCfg = Release|Any CPU
 		{A7A58D10-0BB8-4F2D-9DF6-449DFF1EE05B}.Release|x86.Build.0 = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|x64.Build.0 = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC6D8D73-7537-46FB-BBA6-C662C14258FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sytko.Blazor.EditorDemo.Data\Sytko.Blazor.EditorDemo.Data.csproj" />
     <ProjectReference Include="..\Sytko.Blazor.Editor\Sytko.Blazor.Editor.csproj" />
   </ItemGroup>
 

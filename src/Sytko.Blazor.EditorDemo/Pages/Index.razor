@@ -1,28 +1,16 @@
 ﻿@page "/"
 
-<div class="top-row px-4 shadow-1">
+<div class="top-row px-4 shadow-2">
     @*<button class="btn btn-primary" @onclick="AddObjectExecute">Add Object</button>*@
-    <span class="ml-md-auto"> </span>
+    <span class="ml-md-auto">Outfit Designer</span>
 </div>
 
 <div class="content">
     <div class="editor-outer" ondragover="event.preventDefault();" @ondrop="HandleDrop">
 
-        <div class="article-catalog shadow-2 p-2">
-            <div class="row g-1">
-                @foreach (var item in _catalogItems)
-                {
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="@item.ImageUrl" draggable="true"
-                                 @ondragstart="() => DragImage = item" />
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
+        <ArticleCatalog CatalogItems="@_catalogItems" OnDragStart="(item) => DragImage = item" />
+
+
 
 
         <div class="right-side">
