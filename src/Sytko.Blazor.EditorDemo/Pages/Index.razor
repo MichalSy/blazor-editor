@@ -22,12 +22,12 @@
         {
             <div class="editor-detail-view shadow-1 noselect" style="left: @(DetailPosition.X)px; top: @(DetailPosition.Y)px;">
 
-                @if (_selectedItem?.DataModel?.AvailableArticles?.Any() ?? false)
+                @if (_selectedItem?.DataModel?.AvailableVariants?.Any() ?? false)
                 {
                     <div class="article-information">
 
                         <div class="sub-header">Variants:</div>
-                        @foreach (var article in _selectedItem.DataModel.AvailableArticles)
+                        @foreach (var article in _selectedItem.DataModel.AvailableVariants)
                         {
                             <button class="btn-color" style="background-color: @article.ColorHexCode;" @onclick="() => SwitchArticleForSelectedItem(article)"> </button>
                         }

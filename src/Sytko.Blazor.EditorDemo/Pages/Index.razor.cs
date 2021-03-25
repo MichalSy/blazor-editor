@@ -8,7 +8,7 @@ using System.Linq;
 using Sytko.Blazor.Editor;
 using Sytko.Blazor.Editor.Common;
 using Sytko.Blazor.Editor.Models;
-using Sytko.Blazor.EditorDemo.Models;
+using Sytko.Blazor.EditorDemo.Data.Models;
 
 namespace Sytko.Blazor.EditorDemo.Pages
 {
@@ -21,16 +21,16 @@ namespace Sytko.Blazor.EditorDemo.Pages
 
         private List<DragItem> _items = new();
 
-        private List<CatalogItem> _catalogItems = new();
-        public CatalogItem DragImage { get; set; }
+        private List<ArticleInformation> _catalogItems = new();
+        public ArticleInformation DragImage { get; set; }
 
-        private DragItemWithModel<ArticleDragItem> _selectedItem;
+        private DragItemWithModel<ArticleInformation> _selectedItem;
         public DragItem SelectedItem
         {
             get => _selectedItem;
             set
             {
-                _selectedItem = value as DragItemWithModel<ArticleDragItem>;
+                _selectedItem = value as DragItemWithModel<ArticleInformation>;
                 CalculateDetailPosition();
             }
         }
@@ -40,20 +40,20 @@ namespace Sytko.Blazor.EditorDemo.Pages
 
         protected override void OnInitialized()
         {
-            _catalogItems.Add(new CatalogItem
+            _catalogItems.Add(new ArticleInformation
             {
                 ImageUrl = "/assets/tt/1016511_21905_7.webp"
             });
-            _catalogItems.Add(new CatalogItem
+            _catalogItems.Add(new ArticleInformation
             {
                 ImageUrl = "/assets/tt/1026338_10302_7.webp"
             });
-            _catalogItems.Add(new CatalogItem
+            _catalogItems.Add(new ArticleInformation
             {
                 ImageUrl = "/assets/tt/1025433_16396_7.webp"
             });
 
-            _items.Add(new DragItemWithModel<ArticleDragItem>
+            _items.Add(new DragItemWithModel<ArticleInformation>
             {
                 X = -150,
                 Y = 141,
@@ -61,9 +61,9 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 120,
                 ImageUrl = "/assets/tt/1016511_21905_7.webp",
                 BackgroundColor = "#00ffff00",
-                DataModel = new ArticleDragItem
+                DataModel = new ArticleInformation
                 {
-                    AvailableArticles = new ArticleInformation[]
+                    AvailableVariants = new ArticleInformation[]
                     {
                         new ArticleInformation
                         {
@@ -79,7 +79,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 }
             });
 
-            _items.Add(new DragItemWithModel<ArticleDragItem>
+            _items.Add(new DragItemWithModel<ArticleInformation>
             {
                 X = 84,
                 Y = 104,
@@ -87,9 +87,9 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 291,
                 ImageUrl = "/assets/tt/1026338_10302_7.webp",
                 BackgroundColor = "#00000000",
-                DataModel = new ArticleDragItem
+                DataModel = new ArticleInformation
                 {
-                    AvailableArticles = new ArticleInformation[]
+                    AvailableVariants = new ArticleInformation[]
                     {
                         new ArticleInformation
                         {
@@ -110,7 +110,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 }
             });
 
-            _items.Add(new DragItemWithModel<ArticleDragItem>
+            _items.Add(new DragItemWithModel<ArticleInformation>
             {
                 X = 94,
                 Y = -95,
@@ -118,9 +118,9 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 Height = 216,
                 ImageUrl = "/assets/tt/1025433_16396_7.webp",
                 BackgroundColor = "#00000000",
-                DataModel = new ArticleDragItem
+                DataModel = new ArticleInformation
                 {
-                    AvailableArticles = new ArticleInformation[]
+                    AvailableVariants = new ArticleInformation[]
                     {
                         new ArticleInformation
                         {
@@ -192,7 +192,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
         {
             _logger.LogInformation($"{DragImage.ImageUrl}");
             var matrixPos = EditorView.ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
-            var newModel = new DragItemWithModel<ArticleDragItem>
+            var newModel = new DragItemWithModel<ArticleInformation>
             {
                 X = (int)matrixPos.X - 83,
                 Y = (int)matrixPos.Y - 108,

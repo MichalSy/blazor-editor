@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Sytko.Blazor.Editor\Sytko.Blazor.Editor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
