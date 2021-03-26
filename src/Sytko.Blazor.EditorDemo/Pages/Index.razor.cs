@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using Sytko.Blazor.Editor;
 using Sytko.Blazor.Editor.Common;
 using Sytko.Blazor.Editor.Models;
@@ -56,14 +55,15 @@ namespace Sytko.Blazor.EditorDemo.Pages
                 return;
             }
 
-
             var worldPosition = EditorView.ConvertRectangleFromMatrixToWorld(new Rectangle(_selectedItem.X, _selectedItem.Y, _selectedItem.Width, _selectedItem.Height));
 
             var halfWidth = worldPosition.Width / 2;
             var halfHeight = worldPosition.Height / 2;
-            var maxLength = (int)Math.Sqrt((halfWidth * halfWidth) + (halfHeight * halfHeight));
 
-            DetailPosition = new Vector2Int(worldPosition.X + halfWidth + maxLength + 2, worldPosition.Y + halfHeight);
+            var radians = _selectedItem.Rotation * Math.PI / 180;
+            var bx = halfWidth * Math.Abs(Math.Cos(radians)) + halfHeight * Math.Abs(Math.Sin(radians));
+
+            DetailPosition = new Vector2Int(worldPosition.X + halfWidth + (int)bx + 4, worldPosition.Y + halfHeight);
         }
 
         private void OnCurrentActionChanged(EditorActionTypes newAction)
@@ -79,7 +79,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
 
         private void RotateSelectedItem()
         {
-            SelectedItem.Rotation += 20;
+            SelectedItem.Rotation -= 20;
         }
 
         private void ScaleAddSelectedItem()
