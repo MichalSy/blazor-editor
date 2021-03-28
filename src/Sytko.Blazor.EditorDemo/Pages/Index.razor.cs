@@ -63,7 +63,7 @@ namespace Sytko.Blazor.EditorDemo.Pages
             var radians = _selectedItem.Rotation * Math.PI / 180;
             var bx = halfWidth * Math.Abs(Math.Cos(radians)) + halfHeight * Math.Abs(Math.Sin(radians));
 
-            DetailPosition = new Vector2Int(worldPosition.X + halfWidth + (int)bx + 4, worldPosition.Y + halfHeight);
+            DetailPosition = new Vector2Int(worldPosition.X + halfWidth + (int)bx + 4, worldPosition.Y);
         }
 
         private void OnCurrentActionChanged(EditorActionTypes newAction)
@@ -80,12 +80,6 @@ namespace Sytko.Blazor.EditorDemo.Pages
         private void RotateSelectedItem()
         {
             SelectedItem.Rotation -= 20;
-        }
-
-        private void ScaleAddSelectedItem()
-        {
-            SelectedItem.Width += 20;
-            SelectedItem.Height += 20;
         }
 
         private void SwitchArticleForSelectedItem(ArticleInformation article)

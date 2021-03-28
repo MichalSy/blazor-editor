@@ -13,6 +13,7 @@ namespace Sytko.Blazor.Editor.Common
         MoveWorld,
         DragItem,
         MoveItem,
+        ResizeItem,
         Zoom,
     }
 }

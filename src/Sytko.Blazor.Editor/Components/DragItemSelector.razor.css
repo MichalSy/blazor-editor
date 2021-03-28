@@ -1,0 +1,8 @@
+﻿svg#SelectorResizer {
+    fill: #e4e4e4;
+    background-color: transparent;
+}
+
+svg#SelectorResizer:hover {
+    fill: #878787;
+}

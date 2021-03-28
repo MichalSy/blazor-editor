@@ -9,6 +9,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Sytko.Blazor.Editor.Common;
+using Sytko.Blazor.Editor.Models;
 
 namespace Sytko.Blazor.Editor
 {
@@ -37,6 +38,7 @@ namespace Sytko.Blazor.Editor
 
         private Vector2Int _dragItemStartOffset = Vector2Int.Zero;
         private Vector2Int _dragWorldStartOffset = Vector2Int.Zero;
+        private StartItemActionHolder _resizeItemStart = null;
 
 
 
@@ -70,7 +72,7 @@ namespace Sytko.Blazor.Editor
             return new Rectangle((int)posX, (int)posY, (int)width, (int)height);
         }
 
-        private void MouseMoveExecute(MouseEventArgs e)
+        private async void MouseMoveExecute(MouseEventArgs e)
         {
             var localMouse = ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY));
             LocalMousePointer = localMouse;
@@ -94,7 +96,43 @@ namespace Sytko.Blazor.Editor
                 ViewportPosition = new Vector2Int((int)(e.OffsetX - _dragWorldStartOffset.X), (int)(e.OffsetY - _dragWorldStartOffset.Y));
                 SetAction(EditorActionTypes.MoveWorld, true);
             }
-            
+            else if (_currentAction == EditorActionTypes.ResizeItem && _resizeItemStart != null)
+            {
+                //var centerItemPoint = new Vector2Int(_resizeItemStart.ItemRectangle.X + (_resizeItemStart.ItemRectangle.Width / 2), _resizeItemStart.ItemRectangle.Y + (_resizeItemStart.ItemRectangle.Height / 2));
+                //var prevDistance = GetDistance(centerItemPoint.X, centerItemPoint.Y, _resizeItemStart.MatrixMousePosition.X, _resizeItemStart.MatrixMousePosition.Y);
+
+                //var currentDistance = GetDistance(centerItemPoint.X, centerItemPoint.Y, localMouse.X, localMouse.Y);
+
+                //var distanceRatio = (float)currentDistance / (float)prevDistance;
+
+                //var newWidth = _resizeItemStart.ItemRectangle.Width * distanceRatio;
+                //var newHeight = _resizeItemStart.ItemRectangle.Height * distanceRatio;
+
+                //_logger.LogInformation($"PrevDistance: {prevDistance}, CurrentDistance: {currentDistance}, DistanceRatio: {distanceRatio}");
+
+                //SelectedItem.Width = (int)newWidth;
+                //SelectedItem.Height = (int)newHeight;
+
+                //---
+
+                var diffX = localMouse.X - _resizeItemStart.MatrixMousePosition.X;
+                var diffY = localMouse.Y - _resizeItemStart.MatrixMousePosition.Y;
+
+                SelectedItem.Width = _resizeItemStart.ItemRectangle.Width + diffX;
+                var ratio = (float)SelectedItem.Width / (float)_resizeItemStart.ItemRectangle.Width;
+
+                SelectedItem.Height = (int)(_resizeItemStart.ItemRectangle.Height * ratio);
+
+                SelectedItem.Width = Math.Max(SelectedItem.Width, 50);
+                SelectedItem.Height = Math.Max(SelectedItem.Height, 50);
+
+                await CurrentActionChanged.InvokeAsync(_currentAction);
+            }
+        }
+
+        private static int GetDistance(int x1, int y1, int x2, int y2)
+        {
+            return (int)Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
         }
 
         private async void MouseDownExecute(MouseEventArgs e)
@@ -165,6 +203,18 @@ namespace Sytko.Blazor.Editor
             _currentAction = newAction;
             _logger.LogInformation($"Action: {_currentAction}");
             await CurrentActionChanged.InvokeAsync(_currentAction);
+        }
+
+        public void StartResizeItem(MouseEventArgs e)
+        {
+            _resizeItemStart = new StartItemActionHolder
+            {
+                ItemRectangle = new Rectangle(SelectedItem.X, SelectedItem.Y, SelectedItem.Width, SelectedItem.Height),
+                WorldMousePosition = new Vector2Int((int)e.OffsetX, (int)e.OffsetY),
+                MatrixMousePosition = ConvertPositionFromWorldToMatrix(new Vector2Int((int)e.OffsetX, (int)e.OffsetY))
+            };
+
+            SetAction(EditorActionTypes.ResizeItem);
         }
     }
 }

@@ -18,5 +18,10 @@ namespace Sytko.Blazor.Editor.Common
         }
 
         public static Vector2Int Zero => new Vector2Int(0, 0);
+
+        public override string ToString()
+        {
+            return $"[{X}, {Y}]";
+        }
     }
 }
