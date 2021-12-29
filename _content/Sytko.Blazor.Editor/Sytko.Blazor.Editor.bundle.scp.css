@@ -1,0 +1,35 @@
+/* _content/Sytko.Blazor.Editor/Components/DragItemSelector.razor.rz.scp.css */
+svg#SelectorResizer[b-octpg1tbsi] {
+    fill: #e4e4e4;
+    background-color: transparent;
+}
+
+svg#SelectorResizer:hover[b-octpg1tbsi] {
+    fill: #878787;
+}
+/* _content/Sytko.Blazor.Editor/EditorView.razor.rz.scp.css */
+div.editor-container[b-wvmkwhomff] {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.drag-item:hover[b-wvmkwhomff] {
+    cursor: default;
+}
+
+.center-message[b-wvmkwhomff] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+    .center-message span[b-wvmkwhomff] {
+        display: inline-block;
+        margin-top: 34%;
+        color: #848484;
+    }
